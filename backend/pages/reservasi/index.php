@@ -78,7 +78,7 @@ $resultReservasi = mysqli_query($connect, $queryReservasi) or die(mysqli_error($
                                     <thead class="table-dark text-center">
                                         <tr>
                                             <th>No</th>
-                                            <th>Waktu</th>
+                                            <th>Waktuu</th>
                                             <th>Durasi (menit)</th>
                                             <th>Status</th>
                                             <th>Total Harga</th>
