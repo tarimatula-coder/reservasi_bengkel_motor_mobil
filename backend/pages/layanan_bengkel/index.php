@@ -2,116 +2,107 @@
 include '../../partials/header.php';
 include '../../partials/sidebar.php';
 include '../../partials/navbar.php';
+
+// Query relasi antara tabel layanan dan reservasi
+$queryLayanan = "
+    SELECT 
+        layanan.id AS id_layanan,
+        layanan.nama_layanan,
+        layanan.kategori,
+        layanan.durasi_minutes AS durasi_layanan,
+        layanan.harga AS harga_layanan,
+        layanan.deskripsi,
+        reservasi.id AS id_reservasi,
+        reservasi.tanggal,
+        reservasi.waktu,
+        reservasi.durasi_minutes AS durasi_reservasi,
+        reservasi.status,
+        reservasi.total_harga,
+        reservasi.catatan AS catatan_reservasi
+    FROM layanan
+    LEFT JOIN reservasi 
+        ON reservasi.layanan_id = layanan.id
+    ORDER BY layanan.id DESC
+";
+
+$resultLayanan = mysqli_query($connect, $queryLayanan) or die(mysqli_error($connect));
 ?>
-<div class="page-container">
-    <div class="main-content">
-        <div class="main-content-inner">
+
+<!-- start loader -->
+<div id="pageloader-overlay" class="visible incoming">
+    <div class="loader-wrapper-outer">
+        <div class="loader-wrapper-inner">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+
+<div id="wrapper">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <!-- Judul dan tombol tambah -->
+            <div class="row mb-3">
+                <div class="col-lg-12 d-flex justify-content-between align-items-center">
+                    <h4 class="mt-3">Data Layanan Bengkel</h4>
+                    <a href="create.php" class="btn btn-danger btn-sm d-flex align-items-center">
+                        <span class="rounded-circle bg-white text-primary d-flex align-items-center justify-content-center me-2"
+                            style="width:22px; height:22px;">
+                            <i class="fa fa-plus"></i>
+                        </span>
+                        Tambah Layanan
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tabel data layanan -->
             <div class="row">
-                <div class="col-12 mt-5">
-                    <div class="card">
+                <div class="col-lg-12">
+                    <div class="card shadow-sm">
                         <div class="card-body">
-                            <h4 class="header-title">Data Table Primary</h4>
-                            <div class="data-tables datatable-primary">
-                                <table id="dataTable2" class="table table-striped table-bordered first">
-                                    <thead class="text-capitalize">
+                            <div class="table-responsive">
+                                <table id="datatable" class="table table-bordered table-striped align-middle">
+                                    <thead class="table-dark text-center">
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start Date</th>
-                                            <th>salary</th>
+                                            <th>No</th>
+                                            <th>Nama Layanan</th>
+                                            <th>Kategori</th>
+                                            <th>Durasi Layanan (Menit)</th>
+                                            <th>Harga</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Angelica Ramos</td>
-                                            <td>Chief Executive Officer (CEO)</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2009/10/09</td>
-                                            <td>$1,200,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>41</td>
-                                            <td>2012/10/13</td>
-                                            <td>$132,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brenden Wagner</td>
-                                            <td>Software Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>28</td>
-                                            <td>2011/06/07</td>
-                                            <td>$206,850</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Caesar Vance</td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>New York</td>
-                                            <td>29</td>
-                                            <td>2011/12/12</td>
-                                            <td>$106,450</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bruno Nash</td>
-                                            <td>Software Engineer</td>
-                                            <td>Edinburgh</td>
-                                            <td>21</td>
-                                            <td>2012/03/29</td>
-                                            <td>$433,060</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>41</td>
-                                            <td>2012/10/13</td>
-                                            <td>$132,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brenden Wagner</td>
-                                            <td>Software Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>28</td>
-                                            <td>2011/06/07</td>
-                                            <td>$206,850</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Caesar Vance</td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>New York</td>
-                                            <td>29</td>
-                                            <td>2011/12/12</td>
-                                            <td>$106,450</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bruno Nash</td>
-                                            <td>Software Engineer</td>
-                                            <td>Edinburgh</td>
-                                            <td>21</td>
-                                            <td>2012/03/29</td>
-                                            <td>$433,060</td>
-                                        </tr>
+                                        <?php
+                                        if (mysqli_num_rows($resultLayanan) > 0) {
+                                            $no = 1;
+                                            while ($layanan = mysqli_fetch_object($resultLayanan)) {
+                                        ?>
+                                                <tr>
+                                                    <td class="text-center"><?= $no++ ?></td>
+                                                    <td><?= htmlspecialchars($layanan->nama_layanan) ?></td>
+                                                    <td><?= htmlspecialchars($layanan->kategori) ?></td>
+                                                    <td class="text-center"><?= htmlspecialchars($layanan->durasi_layanan) ?></td>
+                                                    <td class="text-end">Rp <?= number_format($layanan->harga_layanan, 0, ',', '.') ?></td>
+
+                                                    <!-- Tombol Aksi -->
+                                                    <td class="text-center">
+                                                        <a href="edit.php?id=<?= $layanan->id_layanan ?>" class="btn btn-warning btn-sm mb-1">
+                                                            <i class="fa fa-edit"></i> Edit
+                                                        </a>
+                                                        <a href="../../actions/layanan_bengkel/destroy.php?id=<?= $layanan->id_layanan ?>"
+                                                            class="btn btn-danger btn-sm mb-1"
+                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                                            <i class="fa fa-trash"></i> Hapus
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                        <?php
+                                            }
+                                        } else {
+                                            echo "<tr><td colspan='13' class='text-center text-muted'>Belum ada data layanan</td></tr>";
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -119,11 +110,12 @@ include '../../partials/navbar.php';
                     </div>
                 </div>
             </div>
+            <div class="overlay toggle-menu"></div>
         </div>
     </div>
 </div>
 
 <?php
-include '../../partials/script.php';
 include '../../partials/footer.php';
+include '../../partials/script.php';
 ?>

@@ -1,125 +1,109 @@
-<div id="preloader">
-    <div class="loader"></div>
-</div>
-    <div class="sidebar-menu">
-        <div class="sidebar-header">
-            <div class="logo">
-                <a href="index.html"><img src="../../srtdash-master/srtdash-master/srtdash/assets/images/icon/logo.png" alt="logo"></a>
-            </div>
-        </div>
-        <div class="main-menu">
-            <div class="menu-inner">
-                <nav>
-                    <ul class="metismenu" id="menu">
-                        <li class="active">
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
-                            <ul class="collapse">
-                                <li class="active"><a href="index.html">ICO dashboard</a></li>
-                                <li><a href="index2.html">Ecommerce dashboard</a></li>
-                                <li><a href="index3.html">SEO dashboard</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Sidebar
-                                    Types
-                                </span></a>
-                            <ul class="collapse">
-                                <li><a href="index.html">Left Sidebar</a></li>
-                                <li><a href="index3-horizontalmenu.html">Horizontal Sidebar</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Charts</span></a>
-                            <ul class="collapse">
-                                <li><a href="barchart.html">bar chart</a></li>
-                                <li><a href="linechart.html">line Chart</a></li>
-                                <li><a href="piechart.html">pie chart</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>UI Features</span></a>
-                            <ul class="collapse">
-                                <li><a href="accordion.html">Accordion</a></li>
-                                <li><a href="alert.html">Alert</a></li>
-                                <li><a href="badge.html">Badge</a></li>
-                                <li><a href="button.html">Button</a></li>
-                                <li><a href="button-group.html">Button Group</a></li>
-                                <li><a href="cards.html">Cards</a></li>
-                                <li><a href="dropdown.html">Dropdown</a></li>
-                                <li><a href="list-group.html">List Group</a></li>
-                                <li><a href="media-object.html">Media Object</a></li>
-                                <li><a href="modal.html">Modal</a></li>
-                                <li><a href="pagination.html">Pagination</a></li>
-                                <li><a href="popovers.html">Popover</a></li>
-                                <li><a href="progressbar.html">Progressbar</a></li>
-                                <li><a href="tab.html">Tab</a></li>
-                                <li><a href="typography.html">Typography</a></li>
-                                <li><a href="form.html">Form</a></li>
-                                <li><a href="grid.html">grid system</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-slice"></i><span>icons</span></a>
-                            <ul class="collapse">
-                                <li><a href="fontawesome.html">fontawesome icons</a></li>
-                                <li><a href="themify.html">themify icons</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
-                                <span>Tables</span></a>
-                            <ul class="collapse">
-                                <li><a href="../layanan_bengkel/index.php">basic table</a></li>
-                                <li><a href="table-layout.html">table layout</a></li>
-                                <li><a href="datatable.html">datatable</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="maps.html"><i class="ti-map-alt"></i> <span>maps</span></a></li>
-                        <li><a href="invoice.html"><i class="ti-receipt"></i> <span>Invoice Summary</span></a></li>
-                        <li>
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layers-alt"></i> <span>Pages</span></a>
-                            <ul class="collapse">
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="login2.html">Login 2</a></li>
-                                <li><a href="login3.html">Login 3</a></li>
-                                <li><a href="register.html">Register</a></li>
-                                <li><a href="register2.html">Register 2</a></li>
-                                <li><a href="register3.html">Register 3</a></li>
-                                <li><a href="register4.html">Register 4</a></li>
-                                <li><a href="screenlock.html">Lock Screen</a></li>
-                                <li><a href="screenlock2.html">Lock Screen 2</a></li>
-                                <li><a href="reset-pass.html">reset password</a></li>
-                                <li><a href="pricing.html">Pricing</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-exclamation-triangle"></i>
-                                <span>Error</span></a>
-                            <ul class="collapse">
-                                <li><a href="404.html">Error 404</a></li>
-                                <li><a href="403.html">Error 403</a></li>
-                                <li><a href="500.html">Error 500</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-align-left"></i> <span>Multi
-                                    level menu</span></a>
-                            <ul class="collapse">
-                                <li><a href="#">Item level (1)</a></li>
-                                <li><a href="#">Item level (1)</a></li>
-                                <li><a href="#" aria-expanded="true">Item level (1)</a>
-                                    <ul class="collapse">
-                                        <li><a href="#">Item level (2)</a></li>
-                                        <li><a href="#">Item level (2)</a></li>
-                                        <li><a href="#">Item level (2)</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Item level (1)</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+<?php
+// Pastikan sesi dimulai hanya sekali
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$role = isset($_SESSION['role']) ? $_SESSION['role'] : '';
+?>
+
+<div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+
+    <!-- LOGO + TEXT DALAM 1 BARIS -->
+    <div class="brand-logo d-flex align-items-center"
+        style="width: 100%; padding: 10px; gap: 10px;">
+
+        <!-- LOGO -->
+        <img src="../../templates_admin/assets/images/logo_bengkel.jpg"
+            alt="Logo Bengkel"
+            style="
+                width: 45px;
+                height: 45px;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 2px solid white;
+                padding: 2px;
+            ">
+
+        <!-- TEXT -->
+        <a href="index.php" class="text-decoration-none text-white">
+            <h6 class="logo-text mb-0 fw-semibold" style="font-size: 13px; line-height: 1.1;">
+                Reservasi Bengkel<br>
+                <span style="font-size: 12px;">Motor & Mobil</span>
+            </h6>
+        </a>
+
     </div>
+
+    <ul class="sidebar-menu do-nicescrol">
+
+        <li class="sidebar-header">Menu</li>
+
+        <li><a href="../dashboard/index.php"><i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span></a></li>
+
+        <?php if ($role == 'admin'): ?>
+
+            <li><a href="../pelanggan/index.php"><i class="zmdi zmdi-account-box"></i> <span>Data Pelanggan</span></a></li>
+
+            <li><a href="../mekanik/index.php"><i class="zmdi zmdi-accounts-outline"></i> <span>Data Mekanik</span></a></li>
+
+            <li><a href="../layanan_bengkel/index.php"><i class="zmdi zmdi-wrench"></i> <span>Layanan Bengkel</span></a></li>
+
+            <li><a href="../kendaraan/index.php"><i class="zmdi zmdi-car"></i> <span>Data Kendaraan</span></a></li>
+
+            <li><a href="../reservasi/index.php"><i class="zmdi zmdi-calendar-check"></i> <span>Reservasi</span></a></li>
+
+            <li><a href="../jadwal_servis/index.php"><i class="zmdi zmdi-time"></i> <span>Jadwal Servis</span></a></li>
+
+            <li><a href="../status_perbaikan/index.php"><i class="zmdi zmdi-wrench"></i> <span>Status Perbaikan</span></a></li>
+
+            <li><a href="../transaksi/index.php"><i class="zmdi zmdi-money"></i> <span>Transaksi</span></a></li>
+
+            <li><a href="../laporan/index.php"><i class="zmdi zmdi-file-text"></i> <span>Laporan</span></a></li>
+
+            <li><a href="../user/index.php"><i class="zmdi zmdi-accounts"></i> <span>User</span></a></li>
+
+            <li><a href="../view_pendapatan_bulanan/index.php"><i class="zmdi zmdi-chart"></i> <span>Pendapatan Bulanan</span></a></li>
+
+        <?php endif; ?>
+
+
+        <?php if ($role == 'mekanik'): ?>
+
+            <li><a href="../reservasi/index.php"><i class="zmdi zmdi-calendar"></i> <span>Lihat Reservasi</span></a></li>
+
+            <li><a href="../jadwal_servis/index.php"><i class="zmdi zmdi-time"></i> <span>Jadwal Servis</span></a></li>
+
+            <li><a href="../status_perbaikan/index.php"><i class="zmdi zmdi-wrench"></i> <span>Ubah Status Perbaikan</span></a></li>
+
+        <?php endif; ?>
+
+
+        <?php if ($role == 'pelanggan'): ?>
+
+            <li><a href="../reservasi/create.php"><i class="zmdi zmdi-calendar-add"></i><span>Buat Reservasi</span></a></li>
+
+            <li><a href="../reservasi/index.php"><i class="zmdi zmdi-calendar-check"></i> <span>Riwayat Reservasi</span></a></li>
+
+            <li><a href="../jadwal_servis/index.php"><i class="zmdi zmdi-time"></i> <span>Jadwal Servis</span></a></li>
+
+            <li><a href="../status_perbaikan/index.php"><i class="zmdi zmdi-wrench"></i> <span>Status Perbaikan</span></a></li>
+
+            <li><a href="../transaksi/index.php"><i class="zmdi zmdi-money"></i> <span>Riwayat Pembayaran</span></a></li>
+
+        <?php endif; ?>
+
+        <li class="sidebar-header">Akses</li>
+
+        <?php if (empty($role)): ?>
+            <li><a href="../auth/login.php"><i class="zmdi zmdi-lock-outline"></i> <span>Login</span></a></li>
+        <?php endif; ?>
+
+        <?php if (!empty($role)): ?>
+            <li>
+                <a href="../../actions/auth/logout.php"><i class="zmdi zmdi-power"></i> <span>Logout</span></a>
+            </li>
+        <?php endif; ?>
+
+    </ul>
 </div>
