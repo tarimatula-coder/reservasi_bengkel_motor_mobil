@@ -5,7 +5,7 @@ if (isset($_SESSION['level'])) {
     $level = $_SESSION['level'];
     if ($level === 'Admin') $redirect = '../dashboard/index.php';
     elseif ($level === 'Mekanik') $redirect = '../jadwal_servis/index.php';
-    else $redirect = '../pelanggan/index.php';
+    // else $redirect = '../pelanggan/index.php';
 
     echo "<script>alert('Anda sudah login!');window.location.href='$redirect';</script>";
     exit;
@@ -65,7 +65,6 @@ if (isset($_SESSION['level'])) {
                     <option value="">-- Pilih Role --</option>
                     <option value="admin">Administrator</option>
                     <option value="mekanik">Mekanik</option>
-                    <option value="pelanggan">Pelanggan</option>
                 </select>
             </div>
 

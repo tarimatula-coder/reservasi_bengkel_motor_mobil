@@ -5,16 +5,6 @@ include '../../../config/connection.php';
 // ================= CEGAH LOGIN ULANG =================
 if (isset($_SESSION['role'])) {
 
-    if ($_SESSION['role'] === 'admin') {
-        header("Location: ../../pages/dashboard/index.php");
-        exit;
-    }
-
-    if ($_SESSION['role'] === 'mekanik') {
-        header("Location: ../../pages/jadwal_servis/index.php");
-        exit;
-    }
-
     if ($_SESSION['role'] === 'pelanggan') {
         header("Location: ../frontend/index.php");
         exit;

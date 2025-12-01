@@ -71,8 +71,6 @@ $home_redirect = '../index.php';
                 <label class="form-label">Login Sebagai</label>
                 <select name="role" class="form-select" required>
                     <option value="">-- Pilih Role --</option>
-                    <option value="admin">Administrator</option>
-                    <option value="mekanik">Mekanik</option>
                     <option value="pelanggan">Pelanggan</option>
                 </select>
             </div>
