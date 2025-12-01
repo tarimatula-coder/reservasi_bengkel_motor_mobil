@@ -16,7 +16,7 @@ if (isset($_SESSION['role'])) {
     }
 
     if ($_SESSION['role'] === 'pelanggan') {
-        header("Location: ../../pages/jadwal_servis/index.php");
+        header("Location: ../../../frontend/pages/auth/login.php");
         exit;
     }
 }

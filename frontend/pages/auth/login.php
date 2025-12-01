@@ -17,6 +17,7 @@ $home_redirect = '../index.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Bengkel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="../../templates_user/assets/img/logo_bengkel.jpg" type="image/logo_bengkel.jpg">
     <style>
         body {
             height: 100vh;

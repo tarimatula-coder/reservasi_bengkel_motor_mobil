@@ -37,6 +37,7 @@ $qReservasi = mysqli_query($connect, "
     <title>Tambah Data Transaksi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" href="../../templates_user/assets/img/logo_bengkel.jpg" type="image/logo_bengkel.jpg">
 
     <style>
         /* Definisi Warna Biru Tua Kustom (Deep Blue) */
@@ -188,17 +189,6 @@ $qReservasi = mysqli_query($connect, "
                                                 <label for="tanggal_pembayaran" class="form-label fw-semibold">Tanggal Pembayaran</label>
                                                 <input type="date" class="form-control" id="tanggal_pembayaran" name="tanggal_pembayaran" value="<?= date('Y-m-d') ?>">
                                                 <small class="text-muted">Kosongkan jika sama dengan Tanggal Transaksi.</small>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <!-- Status Pembayaran -->
-                                            <div class="mb-4">
-                                                <label for="status" class="form-label fw-semibold">Status Pembayaran</label>
-                                                <select class="form-select" id="status" name="status" required>
-                                                    <option value="pending" selected>Pending</option>
-                                                    <option value="confirmed">Confirmed (Lunas)</option>
-                                                    <option value="rejected">Rejected (Gagal)</option>
-                                                </select>
                                             </div>
                                         </div>
                                     </div>

@@ -38,6 +38,7 @@ $qLayanan = mysqli_query($connect, "SELECT id, nama_layanan, harga, durasi_minut
     <title>Tambah Data Reservasi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" href="../../templates_user/assets/img/logo_bengkel.jpg" type="image/logo_bengkel.jpg">
 </head>
 
 <body>
@@ -160,7 +161,7 @@ $qLayanan = mysqli_query($connect, "SELECT id, nama_layanan, harga, durasi_minut
                                         </div>
                                     </div>
 
-                                    <div class="mb-4">
+                                    <!-- <div class="mb-4">
                                         <label for="status_reservasi" class="form-label fw-semibold">Status Reservasi</label>
                                         <select class="form-select" name="status_reservasi" id="status_reservasi" required>
                                             <option value="booked" selected>Menunggu (Booked)</option>
@@ -169,7 +170,7 @@ $qLayanan = mysqli_query($connect, "SELECT id, nama_layanan, harga, durasi_minut
                                             <option value="completed">Selesai (Completed)</option>
                                             <option value="cancelled">Dibatalkan (Cancelled)</option>
                                         </select>
-                                    </div>
+                                    </div> -->
 
                                     <div class="mb-4">
                                         <label for="catatan" class="form-label fw-semibold">Catatan</label>
