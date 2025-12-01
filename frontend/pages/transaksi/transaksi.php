@@ -191,6 +191,17 @@ $qReservasi = mysqli_query($connect, "
                                                 <small class="text-muted">Kosongkan jika sama dengan Tanggal Transaksi.</small>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <!-- Status Pembayaran -->
+                                            <div class="mb-4">
+                                                <label for="status" class="form-label fw-semibold">Status Pembayaran</label>
+                                                <select class="form-select" id="status" name="status" required>
+                                                    <option value="pending" selected>Pending</option>
+                                                    <option value="confirmed">Confirmed (Lunas)</option>
+                                                    <option value="rejected">Rejected (Gagal)</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- Bukti Transfer -->

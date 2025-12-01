@@ -12,6 +12,7 @@ $qReservasi = mysqli_query($connect, "
         r.id,               
         r.tanggal, 
         r.waktu, 
+        r.status,
         r.total_harga,
         p.nama AS nama_pelanggan,
         k.plat_nomor AS plat_kendaraan,
@@ -148,6 +149,18 @@ $qReservasi = mysqli_query($connect, "
 
                 <hr class="mb-4">
 
+                <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+                    <div class="alert alert-success alert-dismissible fade show rounded-3 shadow-sm" role="alert">
+                        <i class="fas fa-check-circle me-2"></i> Data reservasi berhasil disimpan! (ID: <?= htmlspecialchars($_GET['id']) ?>)
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php elseif (isset($_GET['status']) && $_GET['status'] == 'error'): ?>
+                    <div class="alert alert-danger alert-dismissible fade show rounded-3 shadow-sm" role="alert">
+                        <i class="fas fa-exclamation-triangle me-2"></i> Gagal menyimpan data. Pesan: <?= htmlspecialchars($_GET['msg']) ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php endif; ?>
+
 
                 <div class="card shadow-lg border-0 rounded-4">
                     <div class="card-header bg-white d-flex justify-content-between align-items-center p-4">
@@ -171,6 +184,7 @@ $qReservasi = mysqli_query($connect, "
                                         <th scope="col">Kendaraan</th>
                                         <th scope="col">Layanan/Mekanik</th>
                                         <th scope="col" class="text-end">Harga</th>
+                                        <th scope="col" class="text-center">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -190,6 +204,11 @@ $qReservasi = mysqli_query($connect, "
                                                     <small class="text-secondary">(Mekanik: <?= htmlspecialchars($res->nama_mekanik) ?>)</small>
                                                 </td>
                                                 <td class="text-end fw-bold">Rp<?= number_format($res->total_harga, 0, ',', '.') ?></td>
+                                                <td class="text-center">
+                                                    <span class="status-badge bg-<?= strtolower(str_replace(' ', '-', $res->status)) ?>">
+                                                        <?= ucwords(str_replace('-', ' ', $res->status)) ?>
+                                                    </span>
+                                                </td>
                                             </tr>
                                         <?php endwhile; ?>
                                     <?php else: ?>

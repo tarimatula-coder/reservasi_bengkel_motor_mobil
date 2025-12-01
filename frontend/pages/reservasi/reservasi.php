@@ -161,7 +161,7 @@ $qLayanan = mysqli_query($connect, "SELECT id, nama_layanan, harga, durasi_minut
                                         </div>
                                     </div>
 
-                                    <!-- <div class="mb-4">
+                                    <div class="mb-4">
                                         <label for="status_reservasi" class="form-label fw-semibold">Status Reservasi</label>
                                         <select class="form-select" name="status_reservasi" id="status_reservasi" required>
                                             <option value="booked" selected>Menunggu (Booked)</option>
@@ -170,7 +170,7 @@ $qLayanan = mysqli_query($connect, "SELECT id, nama_layanan, harga, durasi_minut
                                             <option value="completed">Selesai (Completed)</option>
                                             <option value="cancelled">Dibatalkan (Cancelled)</option>
                                         </select>
-                                    </div> -->
+                                    </div>
 
                                     <div class="mb-4">
                                         <label for="catatan" class="form-label fw-semibold">Catatan</label>

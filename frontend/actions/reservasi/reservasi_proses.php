@@ -12,7 +12,7 @@ $mekanik_id    = trim($_POST['mekanik_id'] ?? '');
 $tanggal       = trim($_POST['tanggal'] ?? '');
 $waktu         = trim($_POST['waktu'] ?? '');
 $durasi_minutes = trim($_POST['durasi_minutes'] ?? '');
-// $status        = trim($_POST['status_reservasi'] ?? '');
+$status        = trim($_POST['status_reservasi'] ?? '');
 $total_harga   = trim($_POST['total_harga'] ?? '');
 $catatan       = trim($_POST['catatan'] ?? '');
 
@@ -20,7 +20,7 @@ $catatan       = trim($_POST['catatan'] ?? '');
 if (
     $pelanggan_id === '' || $kendaraan_id === '' || $layanan_id === '' ||
     $mekanik_id === '' || $tanggal === '' || $waktu === '' ||
-    $durasi_minutes === '' || $total_harga === ''
+    $durasi_minutes === '' || $status === '' || $total_harga === ''
 ) {
     echo "
     <script>
@@ -33,10 +33,10 @@ if (
 // Insert ke database
 $query = "INSERT INTO reservasi (
         pelanggan_id, kendaraan_id, layanan_id, mekanik_id, 
-        tanggal, waktu, durasi_minutes,  total_harga, catatan
+        tanggal, waktu, durasi_minutes, status, total_harga, catatan
     ) VALUES (
         '$pelanggan_id','$kendaraan_id','$layanan_id','$mekanik_id',
-        '$tanggal','$waktu','$durasi_minutes','$total_harga','$catatan'
+        '$tanggal','$waktu','$durasi_minutes','$status','$total_harga','$catatan'
     )
 ";
 

@@ -11,6 +11,7 @@ $reservasi_id       = mysqli_real_escape_string($connect, $_POST['reservasi_id']
 $tipe_pembayaran    = strtolower(mysqli_real_escape_string($connect, $_POST['tipe_pembayaran']));
 $nominal            = mysqli_real_escape_string($connect, $_POST['nominal']);
 $tanggal_pembayaran = mysqli_real_escape_string($connect, $_POST['tanggal_pembayaran']);
+$status             = strtolower(mysqli_real_escape_string($connect, $_POST['status']));
 
 // validasi ENUM tipe_pembayaran sesuai DB
 $valid_tipe = ['tunai', 'transfer', 'e-wallet'];
@@ -19,12 +20,12 @@ if (!in_array($tipe_pembayaran, $valid_tipe)) {
     exit;
 }
 
-// // validasi ENUM status sesuai DB
-// $valid_status = ['pending', 'confirmed', 'rejected'];
-// if (!in_array($status, $valid_status)) {
-//     echo "<script>alert('Status Pembayaran TIDAK valid!');history.back();</script>";
-//     exit;
-// }
+// validasi ENUM status sesuai DB
+$valid_status = ['pending', 'confirmed', 'rejected'];
+if (!in_array($status, $valid_status)) {
+    echo "<script>alert('Status Pembayaran TIDAK valid!');history.back();</script>";
+    exit;
+}
 
 // upload bukti transfer wajib
 if ($_FILES['bukti_transfer']['error'] != 0) {
@@ -40,9 +41,9 @@ $storages = "../../../storages/bukti_transfer/";
 if (move_uploaded_file($_FILES['bukti_transfer']['tmp_name'], $storages . $bukti_transferNew)) {
 
     $query = "INSERT INTO transaksi 
-        (reservasi_id, tipe_pembayaran, nominal, tanggal_pembayaran,  bukti_transfer)
+        (reservasi_id, tipe_pembayaran, nominal, tanggal_pembayaran, status, bukti_transfer)
         VALUES
-        ('$reservasi_id','$tipe_pembayaran','$nominal','$tanggal_pembayaran','$bukti_transferNew')
+        ('$reservasi_id','$tipe_pembayaran','$nominal','$tanggal_pembayaran','$status','$bukti_transferNew')
     ";
 
     if (mysqli_query($connect, $query)) {
