@@ -15,7 +15,7 @@ $id = intval($_GET['id']);
 
 // Ambil data mekanik
 $queryMekanik = $connect->query("
-    SELECT id, user_id, nama, skill, phone, is_available 
+    SELECT id, user_id, nama, skill, phone, is_available, image
     FROM mekanik 
     WHERE id = $id
 ");
@@ -56,7 +56,7 @@ $qUsers = mysqli_query($connect, "SELECT id, username FROM users ORDER BY userna
 
                         <div class="card-body">
 
-                            <form action="../../actions/mekanik/update.php" method="POST">
+                            <form action="../../actions/mekanik/update.php" method="POST" enctype="multipart/form-data">
 
                                 <input type="hidden" name="id" value="<?= $mekanik->id ?>">
 
@@ -102,6 +102,19 @@ $qUsers = mysqli_query($connect, "SELECT id, username FROM users ORDER BY userna
                                         <option value="1" <?= $mekanik->is_available == 1 ? 'selected' : '' ?>>Available</option>
                                         <option value="0" <?= $mekanik->is_available == 0 ? 'selected' : '' ?>>Not Available</option>
                                     </select>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="image" class="form-label fw-semibold">Gambar Mekanik</label>
+                                    <?php
+                                    $imagePath = "../../../storages/mekanik/" . ($mekanik->image ?? '');
+                                    if (!empty($mekanik->image) && file_exists($imagePath)): ?>
+                                        <div class="mb-2">
+                                            <img src="<?= $imagePath ?>" alt="Gambar Mekanik" class="w-25">
+                                        </div>
+                                    <?php endif; ?>
+                                    <input type="file" name="image" class="form-control" id="image">
+                                    <small class="text-muted">Kosongkan jika tidak ingin mengganti gambar</small>
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-4">

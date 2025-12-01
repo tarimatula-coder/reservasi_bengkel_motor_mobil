@@ -30,7 +30,7 @@ $qUsers = mysqli_query($connect, "SELECT id, username FROM users ORDER BY userna
                         </div>
 
                         <div class="card-body">
-                            <form action="../../actions/mekanik/store.php" method="POST">
+                            <form action="../../actions/mekanik/store.php" method="POST" enctype="multipart/form-data">
 
                                 <!-- assign ke user -->
                                 <div class="mb-4">
@@ -73,6 +73,11 @@ $qUsers = mysqli_query($connect, "SELECT id, username FROM users ORDER BY userna
                                         <option value="1">Available</option>
                                         <option value="0">Not Available</option>
                                     </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Gambar Kendaraan</label>
+                                    <input type="file" name="image" class="form-control" id="image" required>
                                 </div>
 
                                 <!-- Tombol -->

@@ -13,9 +13,20 @@ if (!isset($_GET['id']) || $_GET['id'] == '') {
 $id = intval($_GET['id']);
 
 // ===========================
+// Ambil nama file image dulu
+// ===========================
+$qImage = "SELECT image FROM layanan WHERE id = $id LIMIT 1";
+$resImage = mysqli_query($connect, $qImage);
+$imageFile = null;
+
+if ($resImage && mysqli_num_rows($resImage) > 0) {
+    $row = mysqli_fetch_assoc($resImage);
+    $imageFile = $row['image'];
+}
+
+// ===========================
 // 1. Hapus TRANSAKSI dulu
 // ===========================
-// transaksi → ambil id reservasi yg punya layanan_id ini
 $q1 = "DELETE transaksi FROM transaksi
        JOIN reservasi ON transaksi.reservasi_id = reservasi.id
        WHERE reservasi.layanan_id = $id";
@@ -32,6 +43,16 @@ mysqli_query($connect, $q2);
 // ===========================
 $q3 = "DELETE FROM layanan WHERE id = $id";
 $res = mysqli_query($connect, $q3);
+
+// ===========================
+// 4. Hapus file gambar jika ada
+// ===========================
+if ($res && $imageFile) {
+    $filePath = "../../../storages/layanan/" . $imageFile;
+    if (file_exists($filePath)) {
+        unlink($filePath);
+    }
+}
 
 if ($res) {
     echo "<script>

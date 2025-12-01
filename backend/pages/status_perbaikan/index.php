@@ -174,5 +174,25 @@ include '../../partials/navbar.php';
         </div>
     </div>
 </div>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
 
-<?php include '../../partials/footer.php'; ?>
+    #wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content-wrapper {
+        flex: 1;
+    }
+</style>
+
+
+<?php
+include '../../partials/script.php';
+include '../../partials/footer.php';
+?>

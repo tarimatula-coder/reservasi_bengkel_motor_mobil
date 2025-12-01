@@ -11,6 +11,7 @@ $sql = "SELECT
             k.model,
             k.plat_nomor,
             k.tahun,
+            k.image,
             k.catatan,
             p.nama AS nama_pelanggan
         FROM kendaraan k
@@ -47,6 +48,7 @@ if (!$result) {
                                             <th>Jenis</th>
                                             <th>Merk</th>
                                             <th>Model</th>
+                                            <th>Gambar</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -62,6 +64,9 @@ if (!$result) {
                                                     <td><?= htmlspecialchars($row->jenis) ?></td>
                                                     <td><?= htmlspecialchars($row->merk) ?></td>
                                                     <td><?= htmlspecialchars($row->model) ?></td>
+                                                    <td class="text-center">
+                                                        <img src="../../../storages/kendaraan/<?= $row->image ?>" alt="Gambar" width="100" height="100">
+                                                    </td>
                                                     <td class="text-center">
                                                         <a href="edit.php?id=<?= $row->id ?>" class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i> Edit
@@ -91,6 +96,22 @@ if (!$result) {
         </div>
     </div>
 </div>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    #wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content-wrapper {
+        flex: 1;
+    }
+</style>
 
 <?php
 include '../../partials/script.php';

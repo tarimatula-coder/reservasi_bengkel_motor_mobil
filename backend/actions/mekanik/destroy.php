@@ -28,11 +28,25 @@ if (mysqli_num_rows($cek) > 0) {
     exit;
 }
 
+// ambil nama file image mekanik sebelum dihapus
+$qImage = mysqli_query($connect, "SELECT image FROM mekanik WHERE id = $id LIMIT 1");
+$imageName = '';
+if ($qImage && mysqli_num_rows($qImage) > 0) {
+    $row = mysqli_fetch_assoc($qImage);
+    $imageName = $row['image'];
+}
+
 // jika aman → hapus mekanik
 $query = "DELETE FROM mekanik WHERE id = $id";
 $result = mysqli_query($connect, $query);
 
 if ($result) {
+    // hapus file image dari storages jika ada
+    $storages = "../../storages/mekanik/";
+    if ($imageName && file_exists($storages . $imageName)) {
+        unlink($storages . $imageName);
+    }
+
     echo "<script>
         alert('Mekanik berhasil dihapus!');
         window.location.href='../../pages/mekanik/index.php';

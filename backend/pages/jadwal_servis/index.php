@@ -175,4 +175,7 @@ include '../../partials/navbar.php';
     </div>
 </div>
 
-<?php include '../../partials/footer.php'; ?>
+<?php
+include '../../partials/script.php';
+include '../../partials/footer.php';
+?>

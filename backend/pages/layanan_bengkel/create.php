@@ -23,7 +23,7 @@ include '../../partials/navbar.php';
                         </div>
 
                         <div class="card-body">
-                            <form action="../../actions/layanan_bengkel/store.php" method="post">
+                            <form action="../../actions/layanan_bengkel/store.php" method="post" enctype="multipart/form-data">
 
                                 <!-- Nama Layanan -->
                                 <div class="mb-4">
@@ -53,6 +53,12 @@ include '../../partials/navbar.php';
                                 <div class="mb-4">
                                     <label for="deskripsi" class="form-label">Deskripsi</label>
                                     <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan deskripsi layanan..." rows="4" required></textarea>
+                                </div>
+
+                                <!-- Upload Gambar -->
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Gambar Kendaraan</label>
+                                    <input type="file" name="image" class="form-control" id="image" required>
                                 </div>
 
                                 <div class="d-flex justify-content-between">

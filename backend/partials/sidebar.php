@@ -63,7 +63,7 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : '';
 
             <li><a href="../user/index.php"><i class="zmdi zmdi-accounts"></i> <span>User</span></a></li>
 
-            <li><a href="../view_pendapatan_bulanan/index.php"><i class="zmdi zmdi-chart"></i> <span>Pendapatan Bulanan</span></a></li>
+            <!-- <li><a href="../view_pendapatan_bulanan/index.php"><i class="zmdi zmdi-chart"></i> <span>Pendapatan Bulanan</span></a></li> -->
 
         <?php endif; ?>
 

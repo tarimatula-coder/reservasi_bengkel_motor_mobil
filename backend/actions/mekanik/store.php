@@ -19,10 +19,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Query insert data mekanik
+    // Validasi file gambar
+    if (!isset($_FILES['image']) || $_FILES['image']['error'] != 0) {
+        echo "<script>alert('Silakan pilih gambar mekanik!'); window.history.back();</script>";
+        exit;
+    }
+
+    $file_tmp = $_FILES['image']['tmp_name'];
+    $file_ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+    $allowed_ext = ['jpg', 'jpeg', 'png', 'gif'];
+
+    if (!in_array($file_ext, $allowed_ext)) {
+        echo "<script>alert('Format gambar tidak diperbolehkan. Hanya jpg, jpeg, png, gif.'); window.history.back();</script>";
+        exit;
+    }
+
+    // Buat nama file unik
+    $imageName = time() . "_mekanik." . $file_ext;
+
+    // Tentukan folder storages
+    $storages = "../../../storages/mekanik/";
+
+    // Pindahkan file ke folder storages
+    if (!move_uploaded_file($file_tmp, $storages . $imageName)) {
+        echo "<script>alert('Gagal upload gambar mekanik!'); window.history.back();</script>";
+        exit;
+    }
+
+    // Query insert data mekanik termasuk nama file image
     $query = "
-        INSERT INTO mekanik (user_id, nama, skill, phone, is_available)
-        VALUES ('$user_id', '$nama', '$skill', '$phone', '$is_available')
+        INSERT INTO mekanik (user_id, nama, skill, phone, is_available, image)
+        VALUES ('$user_id', '$nama', '$skill', '$phone', '$is_available', '$imageName')
     ";
 
     if ($connect->query($query)) {
@@ -31,6 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 window.location.href='../../pages/mekanik/index.php';
               </script>";
     } else {
+        // Jika gagal insert, hapus gambar yang sudah di-upload
+        if (file_exists($storages . $imageName)) {
+            unlink($storages . $imageName);
+        }
         echo "<script>
                 alert('Terjadi kesalahan: " . $connect->error . "');
                 window.history.back();

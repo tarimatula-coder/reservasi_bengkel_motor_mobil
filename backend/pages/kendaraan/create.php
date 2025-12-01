@@ -16,31 +16,60 @@ if (isset($_POST['tombol'])) {
     $tahun        = trim($_POST['tahun']);
     $catatan      = trim($_POST['catatan']);
 
-    // Validasi
-    if (
-        empty($pelanggan_id) || empty($jenis) || empty($merk) ||
-        empty($model) || empty($plat_nomor) || empty($tahun)
-    ) {
+    // Validasi field wajib
+    if (empty($pelanggan_id) || empty($jenis) || empty($merk) || empty($model) || empty($plat_nomor) || empty($tahun)) {
         echo "<script>alert('Semua field wajib diisi!');</script>";
-    } else {
-        // Simpan ke database
-        $stmt = $connect->prepare("
-            INSERT INTO kendaraan (pelanggan_id, jenis, merk, model, plat_nomor, tahun, catatan)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        ");
-        $stmt->bind_param("issssis", $pelanggan_id, $jenis, $merk, $model, $plat_nomor, $tahun, $catatan);
+        exit;
+    }
 
-        if ($stmt->execute()) {
-            echo "
-            <script>
+    // Validasi file gambar
+    if (!isset($_FILES['image']) || $_FILES['image']['error'] != 0) {
+        echo "<script>alert('Silakan pilih gambar kendaraan!');</script>";
+        exit;
+    }
+
+    $file_tmp  = $_FILES['image']['tmp_name'];
+    $file_ext  = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+    $allowed_ext = ['jpg', 'jpeg', 'png', 'gif'];
+
+    if (!in_array($file_ext, $allowed_ext)) {
+        echo "<script>alert('Format gambar tidak diperbolehkan. Hanya jpg, jpeg, png, gif.');</script>";
+        exit;
+    }
+
+    // Buat nama file unik
+    $imageName = time() . "_kendaraan." . $file_ext;
+
+    // Tentukan folder storages
+    $storages = "../../../storages/kendaraan/";
+
+    // Pindahkan file ke folder storages
+    if (!move_uploaded_file($file_tmp, $storages . $imageName)) {
+        echo "<script>alert('Gagal upload gambar kendaraan!');</script>";
+        exit;
+    }
+
+    // Simpan data ke database termasuk nama file
+    $stmt = $connect->prepare("
+        INSERT INTO kendaraan (pelanggan_id, jenis, merk, model, plat_nomor, tahun, catatan, image)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ");
+    $stmt->bind_param("issssiss", $pelanggan_id, $jenis, $merk, $model, $plat_nomor, $tahun, $catatan, $imageName);
+
+    if ($stmt->execute()) {
+        echo "<script>
                 alert('Data kendaraan berhasil ditambahkan!');
                 window.location.href='index.php';
-            </script>";
-        } else {
-            echo "<script>alert('Gagal menambahkan data kendaraan!');</script>";
+              </script>";
+    } else {
+        // Jika gagal insert, hapus gambar yang sudah di-upload
+        if (file_exists($storages . $imageName)) {
+            unlink($storages . $imageName);
         }
-        $stmt->close();
+        echo "<script>alert('Gagal menambahkan data kendaraan!');</script>";
     }
+
+    $stmt->close();
 }
 ?>
 
@@ -63,7 +92,7 @@ if (isset($_POST['tombol'])) {
                         </div>
 
                         <div class="card-body">
-                            <form method="post">
+                            <form action="../../actions/kendaraan/store.php" method="post" enctype="multipart/form-data" enctype="multipart/form-data">
 
                                 <!-- Nama Pelanggan -->
                                 <div class="mb-4">
@@ -118,9 +147,14 @@ if (isset($_POST['tombol'])) {
                                     <textarea name="catatan" id="catatan" class="form-control" placeholder="Masukkan catatan tambahan..."></textarea>
                                 </div>
 
+                                <!-- Upload Gambar -->
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Gambar Kendaraan</label>
+                                    <input type="file" name="image" class="form-control" id="image" required>
+                                </div>
+
                                 <button type="submit" class="btn btn-success" name="tombol">Tambah</button>
                                 <a href="index.php" class="btn btn-secondary">Kembali</a>
-
                             </form>
                         </div>
                     </div>
@@ -128,6 +162,7 @@ if (isset($_POST['tombol'])) {
             </div>
         </div>
     </div>
+
     <style>
         html,
         body {
@@ -144,7 +179,6 @@ if (isset($_POST['tombol'])) {
             flex: 1;
         }
     </style>
-
 
     <?php
     include '../../partials/footer.php';

@@ -1,5 +1,5 @@
 <?php
-$qMekanik  = "SELECT * FROM mekanik LIMIT 4";
+$qMekanik  = "SELECT * FROM mekanik LIMIT 7";
 $resultmekanik = mysqli_query($connect, $qMekanik) or die(mysqli_error($connect));
 
 // 4 gambar default
@@ -38,7 +38,7 @@ $index = 0;
                     <div class="mekanik-card">
 
                         <div class="mekanik-img-wrapper">
-                            <img src="<?= $foto ?>" class="mekanik-img" alt="Foto Mekanik">
+                            <img src="../storages/mekanik/<?= $item->image ?>" alt="">
                         </div>
 
                         <div class="card-body text-center">

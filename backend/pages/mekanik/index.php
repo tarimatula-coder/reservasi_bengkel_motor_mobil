@@ -10,6 +10,7 @@ $queryMekanik = "SELECT
         mekanik.nama AS nama_mekanik,
         mekanik.skill AS skill_mekanik,
         mekanik.phone AS phone_mekanik,
+         mekanik.image AS image_mekanik,
         mekanik.is_available AS is_available,
         reservasi.id AS id_reservasi,
         reservasi.tanggal AS tanggal_reservasi,
@@ -71,6 +72,7 @@ $resultMekanik = mysqli_query($connect, $queryMekanik) or die(mysqli_error($conn
                                             <th>Keahlian (Skill)</th>
                                             <th>Nomor Telepon</th>
                                             <th>is_available</th>
+                                            <th>Gambar</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -106,6 +108,17 @@ $resultMekanik = mysqli_query($connect, $queryMekanik) or die(mysqli_error($conn
                                                         <?php endif; ?>
                                                     </td>
 
+                                                    <td class="text-center">
+                                                        <?php
+                                                        $imagePath = "../../../storages/mekanik/" . ($dataMekanik->image_mekanik ?? '');
+                                                        if (!empty($dataMekanik->image_mekanik) && file_exists($imagePath)) : ?>
+                                                            <img src="<?= $imagePath ?>" alt="Gambar Mekanik" width="100" height="100">
+                                                        <?php else: ?>
+                                                            <img src="../../../storages/mekanik/default.png" alt="No Image" width="100" height="100">
+                                                        <?php endif; ?>
+                                                    </td>
+
+
                                                     <!-- Tombol Aksi -->
                                                     <td class="text-center">
                                                         <a href="edit.php?id=<?= $dataMekanik->id_mekanik ?>" class="btn btn-warning btn-sm mb-1">
@@ -138,6 +151,23 @@ $resultMekanik = mysqli_query($connect, $queryMekanik) or die(mysqli_error($conn
         </div> <!-- Akhir container-fluid -->
     </div> <!-- Akhir content-wrapper -->
 </div> <!-- Akhir wrapper -->
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    #wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content-wrapper {
+        flex: 1;
+    }
+</style>
+
 
 <!-- Memanggil script dan footer -->
 <?php

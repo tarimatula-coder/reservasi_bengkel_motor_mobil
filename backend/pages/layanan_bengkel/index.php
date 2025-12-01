@@ -9,6 +9,7 @@ $queryLayanan = "
         layanan.id AS id_layanan,
         layanan.nama_layanan,
         layanan.kategori,
+        layanan.image,
         layanan.durasi_minutes AS durasi_layanan,
         layanan.harga AS harga_layanan,
         layanan.deskripsi,
@@ -69,6 +70,7 @@ $resultLayanan = mysqli_query($connect, $queryLayanan) or die(mysqli_error($conn
                                             <th>Kategori</th>
                                             <th>Durasi Layanan (Menit)</th>
                                             <th>Harga</th>
+                                            <th>Gambar</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -84,7 +86,9 @@ $resultLayanan = mysqli_query($connect, $queryLayanan) or die(mysqli_error($conn
                                                     <td><?= htmlspecialchars($layanan->kategori) ?></td>
                                                     <td class="text-center"><?= htmlspecialchars($layanan->durasi_layanan) ?></td>
                                                     <td class="text-end">Rp <?= number_format($layanan->harga_layanan, 0, ',', '.') ?></td>
-
+                                                    <td class="text-center">
+                                                        <img src="../../../storages/layanan/<?= $layanan->image ?>" alt="Gambar" width="100" height="100">
+                                                    </td>
                                                     <!-- Tombol Aksi -->
                                                     <td class="text-center">
                                                         <a href="edit.php?id=<?= $layanan->id_layanan ?>" class="btn btn-warning btn-sm mb-1">
@@ -114,6 +118,22 @@ $resultLayanan = mysqli_query($connect, $queryLayanan) or die(mysqli_error($conn
         </div>
     </div>
 </div>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    #wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content-wrapper {
+        flex: 1;
+    }
+</style>
 
 <?php
 include '../../partials/footer.php';

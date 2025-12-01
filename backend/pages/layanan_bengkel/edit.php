@@ -23,7 +23,8 @@ $queryLayanan = "
         kategori,
         durasi_minutes,
         harga,
-        deskripsi
+        deskripsi,
+        image
     FROM layanan
     WHERE id = $id
 ";
@@ -62,7 +63,7 @@ $layanan = mysqli_fetch_object($result);
                         </div>
 
                         <div class="card-body">
-                            <form action="../../actions/layanan_bengkel/update.php" method="POST">
+                            <form action="../../actions/layanan_bengkel/update.php" method="POST" enctype="multipart/form-data">
 
                                 <input type="hidden" name="layanan_id" value="<?= $layanan->id ?>">
 
@@ -101,6 +102,18 @@ $layanan = mysqli_fetch_object($result);
                                         placeholder="Masukkan deskripsi..."><?= htmlspecialchars($layanan->deskripsi) ?></textarea>
                                 </div>
 
+                                <!-- Upload Gambar -->
+                                <div class="mb-4">
+                                    <label for="image" class="form-label fw-semibold">Gambar Layanan</label>
+                                    <?php if (!empty($layanan->image) && file_exists("../../../storages/layanan/" . $layanan->image)): ?>
+                                        <div class="mb-2">
+                                            <img src="../../../storages/layanan/<?= $layanan->image ?>" alt="Gambar Layanan" class="w-25">
+                                        </div>
+                                    <?php endif; ?>
+                                    <input type="file" name="image" class="form-control" id="image">
+                                    <small class="text-muted">Kosongkan jika tidak ingin mengganti gambar</small>
+                                </div>
+
                                 <!-- Tombol -->
                                 <div class="d-flex justify-content-between mt-4">
                                     <button type="submit" name="tombol" class="btn btn-success px-4">Simpan Perubahan</button>
@@ -114,6 +127,7 @@ $layanan = mysqli_fetch_object($result);
         </div>
     </div>
 </div>
+
 <style>
     html,
     body {
@@ -130,14 +144,14 @@ $layanan = mysqli_fetch_object($result);
         flex: 1;
     }
 </style>
+
 <!-- Script format angka -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const hargaInput = document.getElementById("harga");
 
-        // Format angka jadi format ribuan (titik)
         hargaInput.addEventListener("input", function() {
-            let value = this.value.replace(/\D/g, ""); // hapus semua selain angka
+            let value = this.value.replace(/\D/g, "");
             if (!value) {
                 this.value = "";
                 return;
@@ -145,7 +159,6 @@ $layanan = mysqli_fetch_object($result);
             this.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         });
 
-        // Saat submit form, ubah nilai agar titik dihapus sebelum dikirim
         const form = hargaInput.closest("form");
         form.addEventListener("submit", function() {
             hargaInput.value = hargaInput.value.replace(/\./g, "");

@@ -100,6 +100,23 @@ if (!$result) {
         </div>
     </div>
 </div>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    #wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content-wrapper {
+        flex: 1;
+    }
+</style>
+
 
 <?php
 include '../../partials/script.php';
