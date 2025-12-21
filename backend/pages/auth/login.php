@@ -1,15 +1,18 @@
 <?php
 session_start();
-if (isset($_SESSION['level'])) {
-    // Redirect sesuai level
-    $level = $_SESSION['level'];
-    if ($level === 'Admin') $redirect = '../dashboard/index.php';
-    elseif ($level === 'Mekanik') $redirect = '../jadwal_servis/index.php';
-    // else $redirect = '../pelanggan/index.php';
 
-    echo "<script>alert('Anda sudah login!');window.location.href='$redirect';</script>";
-    exit;
+if (isset($_SESSION['role'])) {
+
+    if ($_SESSION['role'] === 'admin') {
+        header("Location: ../dashboard/index.php");
+        exit;
+    } elseif ($_SESSION['role'] === 'mekanik') {
+        header("Location: ../jadwal_servis/index.php");
+        exit;
+    }
 }
+?>
+
 ?>
 <!DOCTYPE html>
 <html lang="id">
